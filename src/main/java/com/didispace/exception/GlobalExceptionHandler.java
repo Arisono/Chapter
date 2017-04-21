@@ -14,15 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = Exception.class)
-    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("exception", e);
-        mav.addObject("exceptionStr", JSON.toJSONString(e));
-        mav.addObject("url", req.getRequestURL());
-        mav.setViewName("error");
-        return mav;
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("exception", e);
+//        mav.addObject("exceptionStr", JSON.toJSONString(e));
+//        mav.addObject("url", req.getRequestURL());
+//        mav.setViewName("error");
+//        return mav;
+//    }
     
 //    @ExceptionHandler(value = Exception.class)
 //    @ResponseBody

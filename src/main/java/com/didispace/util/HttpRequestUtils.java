@@ -55,7 +55,7 @@ public class HttpRequestUtils {
 	 * @throws ServletException 
 	 * @throws IOException 
 	 */
-	public static Map<String, Object> getHttpMessage(HttpServletRequest request) throws IOException, ServletException {
+	public static Map<String, Object> getHttpMessage(HttpServletRequest request)  {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
