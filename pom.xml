@@ -6,7 +6,7 @@
 	<groupId>com.didispace</groupId>
 	<artifactId>Chapter</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Chapter</name>
 	<description>The first Spring Boot project</description>
@@ -31,14 +31,32 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>log4j-over-slf4j</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions> 
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency> 
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
+
+
 
 		<!--spring-boot-devtools -->
 		<dependency>
@@ -80,6 +98,15 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
+			<!-- 名字规定 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>Chapter</warName>
+				</configuration>
+			</plugin>
+
 		</plugins>
 		<defaultGoal>compile</defaultGoal>
 	</build>

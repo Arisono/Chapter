@@ -38,6 +38,7 @@ public class ExceptionController {
 
     @RequestMapping(value="/hello", method=RequestMethod.GET)
     public String hello() throws Exception {
+    	//new Exception("发生错误")
         throw new Exception("发生错误");
     }
 
