@@ -3,9 +3,103 @@
 <head lang="en">
     <meta charset="UTF-8" />
     <title></title>
+<link rel="stylesheet" href="../css/react.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+
+<script src="../js/react/react.js"></script>
+<script src="../js/react/browser.min.js"></script>
+<script src="../js/react/react-dom.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
+
 </head>
+
+
 <body>
-<h1>Spring-Boot</h1>
-<h1 th:text="${host}">Hello World</h1>
+
+<div id="demo">中</div>
+
+<script type="text/babel">
+
+
+ class LoginBox extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.users = [
+      {
+        username: "Isaac",
+        password: "cheese123"
+      }
+    ]
+    
+    this.state = {
+      testUser: {
+        username: "",
+        password: ""
+      }
+    }
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeVal = this.changeVal.bind(this);
+  }
+
+  handleSubmit(e) {
+    var testUser = this.state.testUser;
+    
+    for(var user of this.users) {
+      if(testUser.username == user.username && testUser.password == user.password) {
+        alert("Success")
+      } else {
+        alert("Failure")
+      }
+    }
+    
+    e.preventDefault();
+  }
+  
+  changeVal(prop, event) {
+    var otherProp = (prop == "username") ? "password" : "username";
+    this.setState((prevState, props) => {
+      return {
+        testUser: {
+          [prop]: event.target.value,
+          [otherProp]: prevState.testUser[otherProp]
+        }
+      }
+    });
+    console.log(this.state.testUser)
+  }
+  
+  render() {
+    return (
+      <div className="container panel panel-default" id="login-box">
+        <h1 className="text-center">Login</h1>
+        <form className="form-horizontal panel-body" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <input type="text" value={this.state.testUser.username} className="form-control" placeholder="Username" onChange={() => this.changeVal("username", event)} />
+          </div>
+          <div className="form-group">
+            <input type="password" value={this.state.testUser.password} className="form-control" placeholder="Password" onChange={() => this.changeVal("password", event)}/>
+          </div>
+          <div className="form-group text-center">
+            <input type="submit" className="btn btn-info" />
+          </div>
+        </form>
+    </div>
+    );
+  }
+}
+
+ReactDOM.render(<LoginBox />, document.getElementById("demo"));
+
+
+
+</script>
+<!--  <h1 th:text="${host}">Hello World</h1>-->
+
+
 </body>
+
+
+
 </html>

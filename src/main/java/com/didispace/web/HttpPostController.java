@@ -17,90 +17,88 @@ import org.springframework.web.bind.annotation.RestController;
 import com.didispace.dto.ErrorInfo;
 import com.didispace.util.HttpRequestUtils;
 
+import io.swagger.annotations.Api;
+
 /**
- * 测试post参数请求 
+ * 测试post参数请求
+ * 
  * @author Arison
  *
  */
 @SuppressWarnings("unused")
+@Api(value = "POST接口", description = " ")
 @RestController
 public class HttpPostController {
-	
+
 	/**
-	 * @RequestBody 
+	 * 方式一：表单传递
+	 * 
+	 * @RequestBody
 	 * @param request
 	 * @return
-	 * @throws ServletException 
-	 * @throws IOException 
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/postParam", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> test0(
-			HttpServletRequest request) throws IOException, ServletException {
-		System.out.println("/postParam()  执行");
-		Map<String, Object> goods =HttpRequestUtils.getHttpMessage(request);
+	public @ResponseBody Map<String, Object> postParam(HttpServletRequest request) throws IOException, ServletException {
+		Map<String, Object> goods = HttpRequestUtils.getHttpMessage(request);
 		return goods;
 	}
-	
+
 	/**
-	 * @RequestBody 
+	 * @RequestBody
 	 * @param body
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/postBodyByString", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> test1(
-			@RequestBody String body, 
-			HttpServletRequest request) {
-		Map<String, Object> goods =HttpRequestUtils.getHttpMessage(body, request);
+	public @ResponseBody Map<String, Object> postBodyByString(@RequestBody String body, HttpServletRequest request) {
+		Map<String, Object> goods = HttpRequestUtils.getHttpMessage(body, request);
 		return goods;
 	}
 
 	/**
-	 * @RequestBody 
+	 * @RequestBody
 	 * @param body
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/postBodyByObject", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> test2(
-			@RequestBody Object body, 
-			HttpServletRequest request) {
-		Map<String, Object> goods =HttpRequestUtils.getHttpMessage(body, request);
+	public @ResponseBody Map<String, Object> postBodyByObject(@RequestBody Object body, HttpServletRequest request) {
+		Map<String, Object> goods = HttpRequestUtils.getHttpMessage(body, request);
 		return goods;
 	}
-	
+
 	/**
-	 * @RequestBody 
+	 * @RequestBody
 	 * @param body
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/postBodyByModel", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> test2(
-			@RequestBody ErrorInfo<String> body, 
-			HttpServletRequest request) {
-		Map<String, Object> goods =HttpRequestUtils.getHttpMessage(body, request);
+	public @ResponseBody Map<String, Object> postBodyByModel(@RequestBody ErrorInfo<String> body, HttpServletRequest request) {
+		Map<String, Object> goods = HttpRequestUtils.getHttpMessage(body, request);
 		return goods;
 	}
-	
+
 	/**
 	 * 多个请求体---出现错误
-	 * @RequestBody 
+	 * 
+	 * @RequestBody
 	 * @param body
 	 * @param request
 	 * @return
-	 * @throws ServletException 
-	 * @throws IOException 
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/postBodyByMuli", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> test2(
-//			@RequestBody String body, 
-//			@RequestBody String body2, 
+	public @ResponseBody Map<String, Object> postBodyByMuli(
+			// @RequestBody String body,
+			// @RequestBody String body2,
 			HttpServletRequest request) throws IOException, ServletException {
-		Map<String, Object> goods =HttpRequestUtils.getHttpMessage( request);
-//		goods.put("body2", body2);
+		Map<String, Object> goods = HttpRequestUtils.getHttpMessage(request);
+		// goods.put("body2", body2);
 		return goods;
 	}
-	
 
 }

@@ -10,34 +10,29 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * @author 程序猿DD
- * @version 1.0.0
- * @date 16/4/18 下午12:02.
- * @blog http://blog.didispace.com
- */
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.didispace.web"))
-                .paths(PathSelectors.any())
-                .build();
-    }
+	@Bean
+	public Docket createRestApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(apiInfo())
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.didispace"))
+				.paths(PathSelectors.any())
+				.build();
+	}
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("相关使用请查阅:https://github.com/swagger-api/swagger-core")
-                .termsOfServiceUrl("http://blog.didispace.com/")
-                .contact("Arison")
-                .version("1.0")
-                .build();
-    }
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder()
+				.title("接口中心")
+				.description(
+						"Spring Boot中使用Swagger2构建RESTful APIs,\n" + "技术查阅:https://github.com/swagger-api/swagger-core")
+				.termsOfServiceUrl("https://github.com/swagger-api/swagger-core")
+				.contact("Arison")
+				.version("1.0")
+				.build();
+	}
 
 }

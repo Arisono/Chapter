@@ -15,19 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.didispace.dto.ErrorInfo;
 
+import io.swagger.annotations.Api;
+
 /**
  * @author Arison
  *
  */
+@Api(value = "参数传递", description = " ")
 @RestController
 public class ParamController {
 
-	@RequestMapping(value="/index", method=RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public @ResponseBody String index() {
 		return "{}";
 	}
 
-	@RequestMapping(value="/getMap", method=RequestMethod.GET)
+	@RequestMapping(value = "/getMap", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> index1() {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		goods.put("1", "11");
@@ -36,7 +39,7 @@ public class ParamController {
 		return goods;
 	}
 
-	@RequestMapping(value="/param/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "/param/{id}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> index2(@PathVariable String id) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		goods.put("参数id", id);
@@ -49,7 +52,7 @@ public class ParamController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/param?id={id}", method=RequestMethod.GET)
+	@RequestMapping(value = "/param?id={id}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> index3(@PathVariable String id) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		goods.put("参数id", id);
@@ -64,9 +67,7 @@ public class ParamController {
 	 */
 
 	@RequestMapping(value = "/param", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> index4(
-			@RequestBody String body,
-			HttpServletRequest request) {
+	public @ResponseBody Map<String, Object> index4(@RequestBody String body, HttpServletRequest request) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
@@ -90,8 +91,7 @@ public class ParamController {
 	}
 
 	@RequestMapping(value = "/param", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> index5(@RequestBody String body,
-			HttpServletRequest request) {
+	public @ResponseBody Map<String, Object> index5(@RequestBody String body, HttpServletRequest request) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
@@ -115,8 +115,7 @@ public class ParamController {
 	}
 
 	@RequestMapping(value = "/paramBody", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> index6(@RequestBody ErrorInfo<String> body, 
-			HttpServletRequest request) {
+	public @ResponseBody Map<String, Object> index6(@RequestBody ErrorInfo<String> body, HttpServletRequest request) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
@@ -138,9 +137,6 @@ public class ParamController {
 		goods.put("body", body);
 		return goods;
 	}
-	
-	
-	
 
 	/**
 	 * @RequestBody 多个的时候,是不允许出现
@@ -149,10 +145,7 @@ public class ParamController {
 	 * @return
 	 */
 	@RequestMapping(value = "/paramModel", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> index8(
-			@RequestBody String body, 
-			@RequestBody String body2, 
-			HttpServletRequest request) {
+	public @ResponseBody Map<String, Object> index8(@RequestBody String body, @RequestBody String body2, HttpServletRequest request) {
 		Map<String, Object> goods = new HashMap<String, Object>();
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")

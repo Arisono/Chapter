@@ -1,14 +1,9 @@
 package com.didispace.exception;
 
-import com.alibaba.fastjson.JSON;
 import com.didispace.dto.ErrorInfo;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice

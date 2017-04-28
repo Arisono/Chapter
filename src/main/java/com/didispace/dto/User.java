@@ -1,7 +1,5 @@
 package com.didispace.dto;
 
-import java.util.List;
-
 /**
  *
  * @author 程序猿DD
