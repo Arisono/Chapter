@@ -50,6 +50,8 @@ public class ExceptionController {
 	public ModelAndView index(ModelMap map) {
 		map.addAttribute("host", "http://blog.didispace.com");
 		return new ModelAndView("index");
+//		map.addAttribute("host", "http://blog.didispace.com");
+//		return new ModelAndView("html/index.html");
 	}
 
 	public void testTaskRun() {
