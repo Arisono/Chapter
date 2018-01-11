@@ -9,8 +9,10 @@ import okhttp3.Response;
 
 public class ApiUasUtils {
 
+	//http://218.18.115.198:8888/ERP/  http://218.18.115.198:8888/ERP/
 	private static final String baseurl = "http://218.18.115.198:8888/ERP/";
-	private static final String master = "USOFTSYS";
+	//YITOA_DATACENTER  USOFTSYS
+	private static final String master = "YITOA_DATACENTER";
 
 	public static String login(String phone, String password) {
 		Map<String, Object> params = new HashMap<>();

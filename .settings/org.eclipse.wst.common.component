@@ -4,6 +4,10 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/libs"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/static/frozenui"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/META-INF"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/META-INF/resources"/>
         <property name="context-root" value="Chapter"/>
         <property name="java-output-path" value="/Chapter/target/classes"/>
     </wb-module>

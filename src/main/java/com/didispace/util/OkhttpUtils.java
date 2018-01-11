@@ -17,7 +17,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import com.didispace.dto.ApiModel;
+import com.didispace.model.common.ApiModel;
 
 import okhttp3.Call;
 import okhttp3.Callback;

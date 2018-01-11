@@ -1,0 +1,97 @@
+<!DOCTYPE>
+<html>
+<meta  http-equiv = 'refresh' charset="UTF-8" name="viewport"
+	 content="width=device-width,initial-scale=1.0,user-scalable=0, 
+	 maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+	<link rel="stylesheet" type="text/css" href="css/test1-9.css">
+<body class="body_ss" src = "image/bgimg.jpg">
+ <title>UU互联</title>
+     <script type="text/jscript" language="javascript"> 
+     var url; //全局变量跳转的原始url
+     window.onload = function(){ //用window的onload事件，窗体加载完毕的时候
+    	 url = window.location.href;
+     		
+     	//url = "http://113.105.74.140:8080/openapp/?pagekind=C&id=123";
+ 		
+ 		 //document.write(params.split("?")[1]);
+ 		/*if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+ 			location.href = "com.baidu.tieba://"+url.split("?")[1];//ios url打开地址
+ 			 window
+ 					.setTimeout(
+ 							function() {
+ 								window.location.href = "https://itunes.apple.com/cn/app/uu-hu-lian/id1093004522?mt=8";//ios下载地址
+ 							}, 3000)
+ 		} else if (navigator.userAgent.match(/android/i)) {
+
+ 			location.href = "app://usoftchina.com?"+url.split("?")[1];//android url打开地址
+ 			 window
+ 					.setTimeout(
+ 							function() {
+ 								window.location.href = "http://shouji.baidu.com/software/23017307.html";//android 下载地址
+ 							}, 3000) 
+ 		} */
+     }
+     
+     function downloadUU(){
+    	 var u = navigator.userAgent;
+         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+         
+         if(isiOS == true){
+        	 window.location.href = "https://itunes.apple.com/cn/app/uu-hu-lian/id1093004522?mt=8";
+        	 }else if(isAndroid == true){
+        		 window.location.href = "http://shouji.baidu.com/software/23017307.html";
+             }else{
+               alert('非移动设备：'+isAndroid);
+             }
+     }
+
+     
+	function openUU(){
+		var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端	
+			if(isiOS == true ){
+				alert('isiOS');
+				window.location.href = "usoftchinapp://?"+url.split("?")[1];//ios url打开地址
+           	 }else if(isAndroid == true){
+           		alert('isAndroid');
+           		location.href = "app://usoftchina.com?"+url.split("?")[1];//android url打开地址
+             }else{
+               alert('非移动设备：'+isAndroid);
+             }		
+	}
+	
+	function closeW(){
+		 	window.opener=null;  
+		    window.open('','_self');  
+		    window.close();  
+	}
+    </script>
+
+</head>
+
+    <!--网页具体内容-->
+    <body background="image\bgimg.jpg"
+style=" background-repeat:no-repeat ;
+background-size:100% 100%;
+background-attachment: fixed;"> 
+        <div> 
+            <button class="btn1  btn btn-default" type="button" onclick="openUU()">打开UU互联</button>
+        </div>
+        <br/>
+        
+        <div>
+           <button class="btn2 btn btn-default" type="button" onclick="downloadUU()">下载UU互联</button>
+        </div>
+        <br/>
+    	<!-- <div>
+           <button class="btn btn btn-default" type="button" onclick="closeW()">关闭</button>
+        </div> -->
+        <br/>
+    </body>
+</html>
+

@@ -2,12 +2,14 @@ package com.didispace.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -60,6 +62,7 @@ public class HttpRequestUtils {
 		Map<String, Object> header = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
 		Enumeration paramNames = request.getParameterNames();
+	
 		//解析文件流
 //		Collection<Part> parts=request.getParts();
 //         for (Part part : parts) {
@@ -68,6 +71,22 @@ public class HttpRequestUtils {
 //		  goods.put("parts", msg);
 //		  
 //		}
+		//读取body传递的数据
+		int len = request.getContentLength();
+		ServletInputStream iii;
+		byte[] buffer = new byte[len];
+		try {
+			iii = request.getInputStream();
+			iii.read(buffer, 0, len);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	   
+		try {
+			goods.put("body", new String(buffer,"utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		while (paramNames.hasMoreElements()) {
 			String key = (String) paramNames.nextElement();
 			Object value = request.getParameter(key);

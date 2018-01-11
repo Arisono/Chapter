@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiParam;
 
 
 @RestController
-@Api(value = "签到接口",description=" ")
+@Api(value = "签到接口")
 @RequestMapping(value = "/sign")
 public class SignController {
 	

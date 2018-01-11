@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.didispace.dto.ErrorInfo;
+import com.didispace.model.common.ErrorInfo;
 
 import io.swagger.annotations.Api;
 
@@ -25,10 +25,7 @@ import io.swagger.annotations.Api;
 @RestController
 public class ParamController {
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public @ResponseBody String index() {
-		return "{}";
-	}
+
 
 	@RequestMapping(value = "/getMap", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> index1() {

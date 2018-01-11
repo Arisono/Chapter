@@ -5,7 +5,7 @@ import java.util.*;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.didispace.dto.User;
+import com.didispace.model.User;
 
 /**
  * @author Arison 通过这里配置使下面的映射都在/users

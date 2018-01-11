@@ -15,6 +15,14 @@ import io.swagger.annotations.Api;
 @Api(value = "异常请求", description = " ")
 @RestController
 public class ExceptionController {
+	
+	@SuppressWarnings("null")
+	@RequestMapping(value = "/excePost", method = RequestMethod.POST)
+	public String excePost() {
+		ArrayList<String> lists = null;
+		System.out.println(lists.size());
+		return "testException";
+	}
 
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/exception01", method = RequestMethod.GET)
@@ -37,7 +45,6 @@ public class ExceptionController {
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String hello() throws Exception {
-		// new Exception("发生错误")
 		throw new Exception("发生错误");
 	}
 
@@ -46,13 +53,7 @@ public class ExceptionController {
 		throw new MyException("发生错误2");
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView index(ModelMap map) {
-		map.addAttribute("host", "http://blog.didispace.com");
-		return new ModelAndView("index");
-//		map.addAttribute("host", "http://blog.didispace.com");
-//		return new ModelAndView("html/index.html");
-	}
+
 
 	public void testTaskRun() {
 		// ArrayList<String> lists=null;
