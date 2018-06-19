@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.didispace.util.HttpRequestUtils;
 
+@SuppressWarnings("unused")
 @RestController
 public class IndexController {
 	

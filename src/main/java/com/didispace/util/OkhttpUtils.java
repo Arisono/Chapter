@@ -113,8 +113,7 @@ public class OkhttpUtils {
 
 		if (isSyn) {
 			try {
-				Response response = OkhttpUtils.client.newCall(request).execute();
-				System.out.println("请求执行成功！");
+				Response response = OkhttpUtils.client.newCall(request).execute();			
 				return response;
 			} catch (IOException e1) {
 				e1.printStackTrace();

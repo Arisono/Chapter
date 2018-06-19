@@ -35,7 +35,7 @@ public class ApiUasUtils {
 		params.put("master", master);
 		params.put("emcode", emcode);
 		params.put("caller", "CardLog");
-		params.put("condition", "cl_emcode='U0316' and to_char(cl_time,'yyyy-MM-dd')='" + date + "'");
+		params.put("condition", "cl_emcode='"+emcode+"' and to_char(cl_time,'yyyy-MM-dd')='" + date + "'");
 		params.put("page", "1");
 		params.put("sessionId", sessionId);
 		Response response =

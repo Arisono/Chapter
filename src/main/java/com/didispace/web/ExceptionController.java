@@ -12,6 +12,7 @@ import com.didispace.exception.MyException;
 
 import io.swagger.annotations.Api;
 
+@SuppressWarnings("unused")
 @Api(value = "异常请求", description = " ")
 @RestController
 public class ExceptionController {

@@ -72,21 +72,21 @@ public class HttpRequestUtils {
 //		  
 //		}
 		//读取body传递的数据
-		int len = request.getContentLength();
-		ServletInputStream iii;
-		byte[] buffer = new byte[len];
-		try {
-			iii = request.getInputStream();
-			iii.read(buffer, 0, len);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	   
-		try {
-			goods.put("body", new String(buffer,"utf-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+//		int len = request.getContentLength();
+//		ServletInputStream iii;
+//		byte[] buffer = new byte[len];
+//		try {
+//			iii = request.getInputStream();
+//			iii.read(buffer, 0, len);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	   
+//		try {
+//			goods.put("body", new String(buffer,"utf-8"));
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
 		while (paramNames.hasMoreElements()) {
 			String key = (String) paramNames.nextElement();
 			Object value = request.getParameter(key);

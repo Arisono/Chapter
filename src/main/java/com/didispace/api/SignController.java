@@ -3,8 +3,9 @@ package com.didispace.api;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.util.StringUtils;
@@ -21,7 +22,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 
 @RestController
@@ -29,48 +29,7 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping(value = "/sign")
 public class SignController {
 	
-	/**
-	 * Session对象的两种取法
-	 * @param mPhone
-	 * @param mPassword
-	 * @param date
-	 * @param request
-	 * @param httpSession
-	 * @return
-	 */
-	@Deprecated
-	@ApiOperation(value = "Session", notes = "")
-	@RequestMapping(method = RequestMethod.GET, value = "/api/{mPhone}/{mPassword}")
-	public @ResponseBody String getApiServletInfo(
-	        @ApiParam(value = "手机号", required = true, defaultValue="13268690268")
-	        @PathVariable String mPhone,	     
-	        @PathVariable String mPassword,
-	        @ApiParam(value = "日期", required = true, defaultValue="2017-07-04")
-	        @PathVariable String date, 
-	        HttpServletRequest request,
-	        @ApiParam(value = "Session", hidden=true)
-	        HttpSession httpSession) {
-		   System.out.println(request.getSession().equals(httpSession));
-				return mPassword;
-	    // ...
-	 }
 	
-	@Deprecated
-	@ApiOperation(value = "HttpSession", notes = "")
-	@RequestMapping(method = RequestMethod.GET, value = "/api/{mPhone}/{mPassword}/{date}")
-	public @ResponseBody String getApiInfo(
-	        @ApiParam(value = "手机号", required = true, defaultValue="13268690268")
-	        @PathVariable String mPhone,
-	        @ApiParam(value = "密码", required = true,defaultValue="111111")
-	        @PathVariable String mPassword,
-	        @ApiParam(value = "日期", required = true, defaultValue="2017-07-04")
-	        @PathVariable String date, 
-	        @ApiParam(value = "Session", hidden=true)
-	        HttpSession httpSession) {
-				return date;
-	    // ...
-	 }
-
 	@ApiOperation(value = "获取打卡信息", notes = "")
 	@RequestMapping(method = RequestMethod.GET, value = "/{mPhone}/{mPassword}/{date}")
 	@ApiImplicitParams({ 
@@ -95,6 +54,7 @@ public class SignController {
 		return result;
 	}
 
+	
 	@ApiOperation(value = "签到", notes = "")
 	@RequestMapping(method = RequestMethod.POST, value = "/{mPhone}/{mPassword}/{date}")
 	@ApiImplicitParams({ 
@@ -102,9 +62,9 @@ public class SignController {
 		@ApiImplicitParam(name = "mPassword", value = "密码", required = true, dataType = "String",defaultValue="111111",paramType="Path"),
 		@ApiImplicitParam(name = "date", value = "日期", required = true, dataType = "String",defaultValue="2017-07-04 13:45:13",paramType="Path"),
 	    @ApiImplicitParam(name = "httpSession", value = "Session", required = false)})
-	public @ResponseBody String saveSign(@PathVariable String mPhone, @PathVariable String mPassword,
+	public @ResponseBody Map<String,Object> saveSign(@PathVariable String mPhone, @PathVariable String mPassword,
 			@PathVariable String date, HttpSession httpSession) {
-
+		Map<String,Object> resultMap=new HashMap<>();
 		String sessionId = (String) httpSession.getAttribute("sessionId");// 拿到关键参数
 		String emcode = (String) httpSession.getAttribute("emcode");// 拿到关键参数
 		String emname = (String) httpSession.getAttribute("emname");// 拿到关键参数
@@ -114,7 +74,20 @@ public class SignController {
 			sessionId = JSON.parseObject(result).getString("sessionId");// 拿到关键参数
 			emcode = JSON.parseObject(result).getString("erpaccount");// 拿到关键参数
 			emname = JSON.parseObject(result).getString("emname");// 拿到关键参数
+			Boolean isSuccess=JSON.parseObject(result).getBoolean("success");// 拿到关键参数
 			phone = mPhone;
+			if (isSuccess!=null) {
+				if(!isSuccess){
+					resultMap.put("info", JSON.parseObject(result));
+					resultMap.put("messge", null);
+					return resultMap;
+				}
+			}else{
+				resultMap.put("messge", null);
+				resultMap.put("info",  JSON.parseObject(result));
+				return resultMap;
+			}
+	
 		}
 
 		float Max = 100, Min = 30.0f;
@@ -127,7 +100,9 @@ public class SignController {
 		String result1 = ApiUasUtils.saveSign(sessionId, phone, emcode, emname, dis, date);
 		String result2 = ApiUasUtils.getSignInfo(emcode, sessionId,
 				new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		return result1 + result2;
+		resultMap.put("messge", JSON.parseObject(result1));//签到信息
+		resultMap.put("list",JSON.parseObject(result2));//列表记录
+		return resultMap;
 	}
 
 	@ApiOperation(value = "login", notes = "")
