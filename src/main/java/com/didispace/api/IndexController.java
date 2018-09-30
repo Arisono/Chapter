@@ -15,11 +15,42 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.didispace.util.HttpRequestUtils;
+import com.didispace.util.OkhttpUtils;
+
+import okhttp3.Response;
 
 @SuppressWarnings("unused")
 @RestController
 public class IndexController {
+	private static final String APPID="wxbc1f8607137d3b8a";
 	
+	private static final String  AppSecret ="cadf13c4e21c2c122cb2341b341e5c22";
+	
+	@RequestMapping("/wxlogin")
+	public String wxlogin(HttpServletRequest request) {
+		System.out.println("---------------wxlogin---------------");
+		String code=request.getParameter("code");
+		System.out.println("code:"+code);
+		//https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+		HashMap<String, Object> params=new HashMap<>();
+		params.put("appid", APPID);
+		params.put("secret", AppSecret);
+		params.put("code", code);
+		params.put("grant_type", "authorization_code");
+		Response response=OkhttpUtils.sendHttp("https://api.weixin.qq.com/sns/oauth2/access_token", 
+				params, 
+				null, 
+				"openid",
+				"post");
+		String content="";
+		try {
+			content = response.body().string();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("content:"+content);
+		return "index";
+	}
 	
 	//forward
 	
