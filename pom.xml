@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.didispace</groupId>
-	<artifactId>Chapter</artifactId>
+	<artifactId>wxService</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
-	<name>Chapter</name>
+	<name>wxService</name>
 	<description>The first Spring Boot project</description>
 
 	<parent>
@@ -130,7 +130,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<warName>Chapter</warName>
+					<warName>wxService</warName>
 				</configuration>
 			</plugin>
 

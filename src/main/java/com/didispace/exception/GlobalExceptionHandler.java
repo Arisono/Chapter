@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-@SuppressWarnings("unused")
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
