@@ -16,17 +16,13 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
-
-
 @SuppressWarnings("unused")
 @SpringBootApplication
-public class ChapterApplication  extends SpringBootServletInitializer {
+public class ChapterApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ChapterApplication.class, args);
 	}
-	
-
 
 	@Override
 	protected SpringApplicationBuilder configure(
@@ -68,19 +64,21 @@ public class ChapterApplication  extends SpringBootServletInitializer {
 	// connector.setRedirectPort(8081);
 	// return connector;
 	// }
-	
-	 @Bean
-	    public EmbeddedServletContainerCustomizer containerCustomizer() {
 
-	        return new EmbeddedServletContainerCustomizer() {
-	            @Override
-	            public void customize(ConfigurableEmbeddedServletContainer container) {
+	@Bean
+	public EmbeddedServletContainerCustomizer containerCustomizer() {
 
-	                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/index.html");
+		return new EmbeddedServletContainerCustomizer() {
+			@Override
+			public void customize(
+					ConfigurableEmbeddedServletContainer container) {
 
-	                container.addErrorPages(error404Page);
-	            }
-	        };
-	    }
+				ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND,
+						"/index.html");
+
+				container.addErrorPages(error404Page);
+			}
+		};
+	}
 
 }
